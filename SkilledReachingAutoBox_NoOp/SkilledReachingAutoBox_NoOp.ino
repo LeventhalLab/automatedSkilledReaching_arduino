@@ -1,5 +1,5 @@
   /* 
-    Sensor Sketch
+    Skilled Reaching Automated Box - No Operant Task (no IR beam)
   */
 
 // Include packages required for motor shield
@@ -18,32 +18,29 @@ Adafruit_DCMotor *act = AFMS.getMotor(1); // Actuator is connected to motor term
 #define pot A8 // Potentiometer
 
 #define butt1 52 // Buttons 1-3
-#define butt2 49
-#define butt3 51
+#define butt2 48
+#define butt3 50
 
 #define softwareSwitch 45 // This switch will turn "on/off" the software
 #define autoSwitch 47 // This switch will turn the actuator controls to "auto" vs "manual"
 
-#define ir 23 // IR beam
 #define led 25 // LED
 
 // Define constant variables
 
-    // Actuator positions - may need to change b/c inverting
+// Actuator positions
 const int zeroPos = 1010; 
 const int startPos = 900; 
-const int readyPos = 300;
-const int reachPos = 25;
+const int readyPos = 500;
+const int reachPos = 35;
 
-const int actErr = 10; // Error in potentiometerconst int trialTime = 5000; 
-const int trialTime = 5000; // How long actuator is in fully extended position
+const int actErr = 10; // Error in potentiometerconst int
+const int trialTime = 2000; // How long actuator is in fully extended position
 const int intTrialInt = 100; // How long actuator remains in fully retracted position before moving to ready position
 
 // Define variables that change
 
 volatile int actPos = 0; // actuator position; volatile because sometimes pot is off
-
-int irState = 0, lastIRState = 0; // States for the IR
 
 int softwareSwitchState = 0, autoSwitchState = 0; // States for software and auto switches
 
@@ -79,15 +76,10 @@ void setup() {
 
   pinMode(softwareSwitch, INPUT_PULLUP);
   pinMode(autoSwitch, INPUT_PULLUP);
-  
-  pinMode(ir, INPUT);
-  digitalWrite(ir, HIGH);
 
   pinMode(led, OUTPUT);
   digitalWrite(led, HIGH);
 
-  // Start serial timing - Can I remove this for final code? Probably
-  Serial.begin(9600);
 }
 
 void loop() {
@@ -101,7 +93,6 @@ void loop() {
 
   // If the softwareSwitch is in the "Off" position
   if (softwareSwitchState == LOW) {
-      // IR Beam not used
       // Other switch (autoSwitch) not used
       // Buttons not used
       // LED turned off (this is the original state of the LED)
@@ -121,7 +112,6 @@ void loop() {
 
     // If autoSwitch is in "Manual" position
     if (autoSwitchState == LOW) {
-      // IR Beam not used
       // LED not used
       
       pushButtons(); // Monitor buttons for long and short pushes to control actuator
@@ -132,42 +122,29 @@ void loop() {
     if (autoSwitchState == HIGH) {
       // Actuator control dependent on IR beam break & timing (Is there a sensor I should use? IR?)
       // Buttons can override auto control and force re-entry to the auto loop
-      // LED turns on when IR beam is broken until actuator begins to lower
+      // LED turns on when actuator reaches "readyPos"
+      // Actuator remains at "reachPos" for "trialTime"
+      // LED turns off when actoator reaches "readyPos"
+      // Actuator remains at "zeroPos" for "intTrialInt"
 
       pushButtons(); // Monitor buttons to control actuator if something isn't working correctly
 
-      Serial.println(actStop);
-      
-      //Move actuator to "ready" position
-      while (actStop == false) {
-        moveAct(readyPos);
-        actStop = true;
-      }
-      
-      // Read state of IR beam
-      irState = digitalRead(ir);
+      moveAct(readyPos);
 
-      // If the IR beam is broken
-      if (irState == LOW) {
+      digitalWrite(led, HIGH);
 
-        // Turn on LED
-        digitalWrite(led, HIGH);
-        
-        moveAct(reachPos);
-        
-        delay(trialTime);
+      moveAct(reachPos);
 
-        // Turn off LED
-        digitalWrite(led, LOW );
-        
-        moveAct(startPos);
+      delay(trialTime);
 
-        actStop = false;
-         
-        delay(intTrialInt);
-        
-      }
-      
+      moveAct(readyPos);
+
+      digitalWrite(led, LOW);
+
+      moveAct(zeroPos);
+
+      delay(intTrialInt);
+  
     }
     
   }

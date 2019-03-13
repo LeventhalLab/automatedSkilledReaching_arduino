@@ -18,8 +18,8 @@ Adafruit_DCMotor *act = AFMS.getMotor(1); // Actuator is connected to motor term
 #define pot A8 // Potentiometer
 
 #define butt1 52 // Buttons 1-3
-#define butt2 49
-#define butt3 51
+#define butt2 48
+#define butt3 50
 
 #define softwareSwitch 45 // This switch will turn "on/off" the software
 #define autoSwitch 47 // This switch will turn the actuator controls to "auto" vs "manual"

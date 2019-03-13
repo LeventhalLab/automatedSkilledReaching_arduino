@@ -8,15 +8,15 @@ Adafruit_DCMotor *act = AFMS.getMotor(1);
 
 #define pot A8
 
-#define butt1 25
-#define butt2 27
-#define butt3 29
+#define butt1 52
+#define butt2 51
+#define butt3 49
 
-long butt1Timer = 0;
-long longButt1Time = 1000;
+long butt2Timer = 350;
+long longButt2Time = 1000;
 
-boolean butt1Active = false;
-boolean longButt1Active = false;
+boolean butt2Active = false;
+boolean longButt2Active = false;
 
 int actPos = 0;
 const int actErr = 3;
@@ -37,33 +37,33 @@ void setup() {
 
 void loop() {
 
-  if (digitalRead(butt1) == HIGH) {
+  if (digitalRead(butt2) == HIGH) {
     // Button Pressed
     
-    if (butt1Active == false) {
-      butt1Active = true;
-      butt1Timer = millis();
+    if (butt2Active == false) {
+      butt2Active = true;
+      butt2Timer = millis();
     }
 
-    if ((millis() - butt1Timer > longButt1Time) && (longButt1Active == false)) {
-      longButt1Active = true;
+    if ((millis() - butt2Timer > longButt2Time) && (longButt2Active == false)) {
+      longButt2Active = true;
       Serial.println("First serial line");
     }
 
   } else {
     // Button Not Pressed
 
-    if (butt1Active == true) {
-      butt1Active = false;
+    if (butt2Active == true) {
+      butt2Active = false;
     }
 
-    if (longButt1Active == true) {
-      longButt1Active = false;
+    if (longButt2Active == true) {
+      longButt2Active = false;
     } else {
       Serial.println("Second serial line");
     }
 
-    butt1Active = false;
+    butt2Active = false;
     delay(50);
     
   }
