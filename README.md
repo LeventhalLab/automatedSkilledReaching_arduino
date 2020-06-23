@@ -31,7 +31,10 @@ You should now be able to use the automated skilled reaching set up.
 - Update pin locations to represent the relevant hardware
 - Verify that all switches and the LED are wired such that they are only HIGH when pressed/on.
 
-[![mouse single-pellet skilled reaching system, Arduino](https://github.com/kristakernodle/automatedSkilledReaching_arduino/blob/master/pics/mouse_autoSR_arduinoBox.png)](https://leventhal.lab.medicine.umich.edu/projects/rodent-model-of-task-specific-dystonia) [![mouse single-pellet skilled reaching system, remote](https://github.com/kristakernodle/automatedSkilledReaching_arduino/blob/master/pics/mouse_autoSR_remote.png)](https://leventhal.lab.medicine.umich.edu/projects/rodent-model-of-task-specific-dystonia)
+<a href="https://leventhal.lab.medicine.umich.edu/projects/rodent-model-of-task-specific-dystonia"><img src="https://github.com/kristakernodle/automatedSkilledReaching_arduino/blob/master/pics/mouse_autoSR_arduinoBox.png" alt="Mouse single-pellet skilled reaching system, Arduino" width="250"/></a>
+
+<a href="https://leventhal.lab.medicine.umich.edu/projects/rodent-model-of-task-specific-dystonia"><img src="https://github.com/kristakernodle/automatedSkilledReaching_arduino/blob/master/pics/mouse_autoSR_remote.png" alt="Mouse single-pellet skilled reaching system, remote" width="250"/></a>
+
 
 <sup>[1]</sup>: https://www.ncbi.nlm.nih.gov/pubmed/12105368
 
