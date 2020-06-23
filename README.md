@@ -27,11 +27,12 @@ You should now be able to use the automated skilled reaching set up.
 ## Set Up
 
 - Behavioral chamber designed based on Farr and Wishaw, 2002 <sup>[1]</sup> and the automated system is developed from Ellens, et al., 2016 <sup>[2]</sup>.
-- Hardware wiring diagrams are available.
+- Hardware wiring diagrams are available. Click [here for the arduino enclosure](https://app.lucidchart.com/documents/view/3c985da0-a261-4bc2-9ef6-2c803c5bdd07) and [here for the remote](https://app.lucidchart.com/documents/view/a5575cea-aeed-4930-a110-d00aac3ece58).
 - Update pin locations to represent the relevant hardware
 - Verify that all switches and the LED are wired such that they are only HIGH when pressed/on.
 
-<a href="https://leventhal.lab.medicine.umich.edu/projects/rodent-model-of-task-specific-dystonia"><img src="https://github.com/kristakernodle/automatedSkilledReaching_arduino/blob/master/pics/mouse_autoSR_arduinoBox.png" alt="Mouse single-pellet skilled reaching system, Arduino" width="500"/><img src="https://github.com/kristakernodle/automatedSkilledReaching_arduino/blob/master/pics/mouse_autoSR_remote.png" alt="Mouse single-pellet skilled reaching system, remote" width="175"/></a>
+<a href="https://app.lucidchart.com/documents/view/3c985da0-a261-4bc2-9ef6-2c803c5bdd07"><img src="https://github.com/kristakernodle/automatedSkilledReaching_arduino/blob/master/pics/mouse_autoSR_arduinoBox.png" alt="Mouse single-pellet skilled reaching system, Arduino" width="500"/></a>
+<a href="https://app.lucidchart.com/documents/view/a5575cea-aeed-4930-a110-d00aac3ece58"><img src="https://github.com/kristakernodle/automatedSkilledReaching_arduino/blob/master/pics/mouse_autoSR_remote.png" alt="Mouse single-pellet skilled reaching system, remote" width="175"/></a>
 
 
 <sup>[1]</sup>: https://www.ncbi.nlm.nih.gov/pubmed/12105368
