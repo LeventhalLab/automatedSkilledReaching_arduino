@@ -50,8 +50,8 @@ const int trialTime = 2000; // How long actuator is in reach position
 
 int softwareSwitchState = 0, autoSwitchState = 0; // States for software and auto switches
 
-void setup() {
-    
+void setup() 
+{
   // Turn on motor shield
   AFMS.begin();
 
@@ -72,21 +72,19 @@ void setup() {
   
   pinMode(led, OUTPUT);
   digitalWrite(led, LOW);
-
-  // For Testing
-  Serial.begin(9600);
-
 }
 
-void loop() { 
+void loop() 
+{ 
   while (isOn(digitalRead(onSwitch)) && not isAuto(digitalRead(autoSwitch))) 
   {
     digitalWrite(led, LOW);
     pushButtons();
   } 
+  
   while (isOn(digitalRead(onSwitch)) && isAuto(digitalRead(autoSwitch))) 
   {   
-    trial();
+    trial(true);
     delay(trialTime);
   } 
 }
@@ -102,6 +100,7 @@ bool isOn(int onSwitchState)
     act->run(RELEASE);
     onSwitchState = digitalRead(onSwitch);
   }
+  
   return value;
 }
 
@@ -111,10 +110,11 @@ bool isAuto(int autoSwitchState)
   {
     return true;
   }
+  
   return false;
 }
 
-void retractActuator(int newPos) 
+void retractActuator(int newPos, bool useLED) 
 { 
   int actPos = analogRead(pot);
   while (actPos > newPos) 
@@ -123,15 +123,20 @@ void retractActuator(int newPos)
     {
       break;
     }
-    if (actPos <= LEDPos) 
+    else if (actPos <= LEDPos && useLED) 
     {
-      digitalWrite(led, HIGH);
+      digitalWrite(led, HIGH);     
       motorSpeed = motorSpeed_slow;
     }
-    else 
+    else if (actPos <= LEDPos && not useLED)
+    {
+      motorSpeed = motorSpeed_slow;
+    }
+    else
     {
       motorSpeed = motorSpeed_fast;
     }
+    
     act->setSpeed(motorSpeed);
     act->run(BACKWARD);
     actPos = analogRead(pot);
@@ -148,7 +153,7 @@ void extendActuator(int newPos)
     {
       break;
     }
-    if (actPos >= LEDPos) 
+    else if (actPos >= LEDPos) 
     {
       digitalWrite(led, LOW);
       motorSpeed = motorSpeed_fast;
@@ -157,38 +162,40 @@ void extendActuator(int newPos)
     {
       motorSpeed = motorSpeed_slow;
     }
+    
     act->setSpeed(motorSpeed);
     act->run(FORWARD);
     actPos = analogRead(pot);
   }
+  
   act->run(RELEASE);
 }
 
-void trial() {
+void trial(bool useLED) 
+{
   extendActuator(zeroPos);
   if (not isOn(digitalRead(onSwitch)))
   {
     return;
   }
+  
   delay(50);
-  retractActuator(reachPos);
+  retractActuator(reachPos, useLED);
   if (not isOn(digitalRead(onSwitch)))
   {
     return;
   }
-
 }
 
 void pushButtons() {
  
   if (digitalRead(resetButton) == LOW) {
-    trial();
+    trial(false);
   }
   
   while (digitalRead(upButton) == LOW) {
     act->setSpeed(motorSpeed_slow);
     act->run(BACKWARD);
-
   }
   
   while (digitalRead(downButton) == LOW) {
