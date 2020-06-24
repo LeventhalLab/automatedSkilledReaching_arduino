@@ -5,7 +5,7 @@ Behavioral chamber designed based on Farr and Wishaw, 2002 <sup>[1]</sup> and th
 
 
 ![Version: 2.0](https://img.shields.io/badge/version-2.0-informational)
-[![License: AFL-3.0](https://img.shields.io/badge/License-Academic%20Free%20License-Yellow)](https://opensource.org/licenses/AFL-3.0)
+[![License: AFL-3.0](https://img.shields.io/badge/License-Academic%20Free%20License%20v3.0-Yellow)](https://opensource.org/licenses/AFL-3.0)
 
 
 [![mouse single-pellet skilled reaching system](https://github.com/kristakernodle/automatedSkilledReaching_arduino/blob/master/docs/pics/mouse_autoSR_chamber.png)](https://leventhal.lab.medicine.umich.edu/projects/rodent-model-of-task-specific-dystonia)
