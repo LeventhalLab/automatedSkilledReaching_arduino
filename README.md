@@ -1,5 +1,5 @@
 # Automated Skilled Reaching Arduino
-Developed for use with a mouse single-pellet skilled reaching task. A remote controls an actuator to move a rod, retreiving sugar pellets for mice to reach for.
+Developed for use with a rat single-pellet skilled reaching task. A remote controls an actuator to move a rod, retreiving sugar pellets for mice to reach for.
 
 Behavioral chamber designed based on Farr and Wishaw, 2002 <sup>[1]</sup> and the automated system is developed from Ellens, et al., 2016 <sup>[2]</sup>.
 
